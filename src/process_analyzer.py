@@ -284,7 +284,11 @@ def calculate_overall_metrics(event_log: pd.DataFrame, lead_times: pd.DataFrame)
     # Process efficiency
     value_add_time = event_log["cycle_time_minutes"].sum()
     total_time = value_add_time + event_log["wait_time_minutes"].sum() + event_log["setup_time_minutes"].sum()
-    metrics["process_efficiency_pct"] = round(value_add_time / total_time * 100, 2) if total_time > 0 else 0
+    if total_time > 1:  # Minimum threshold to avoid unrealistic percentages
+        efficiency = min(100.0, round(value_add_time / total_time * 100, 2))
+    else:
+        efficiency = 0
+    metrics["process_efficiency_pct"] = efficiency
     
     return metrics
 

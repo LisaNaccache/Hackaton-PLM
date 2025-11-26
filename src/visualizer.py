@@ -16,6 +16,11 @@ from .operations import OPERATIONS, OPERATION_SEQUENCE, get_operation_by_id
 
 # Set style
 plt.style.use('seaborn-v0_8-whitegrid')
+try:
+    plt.style.use('seaborn-v0_8-whitegrid')
+except OSError:
+    # Fall back for newer seaborn versions
+    plt.style.use('whitegrid')
 sns.set_palette("husl")
 
 

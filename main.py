@@ -21,9 +21,6 @@ import os
 import sys
 from datetime import datetime
 
-# Add src to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 from src.operations import OPERATIONS, OPERATION_SEQUENCE, get_theoretical_lead_time
 from src.event_log_generator import generate_event_log, calculate_case_lead_times, export_event_log
 from src.process_analyzer import (
